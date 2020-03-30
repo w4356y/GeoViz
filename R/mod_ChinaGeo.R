@@ -10,6 +10,18 @@
 mod_ChinaGeo_ui <- function(id){
   ns <- NS(id)
   tagList(
+    fluidRow(column(6,
+                    selectInput("AreaType",
+                                "Please select an level.",
+                                choices = c("Country","Province","City","District")
+                                ),
+                    actionButton(ns("confirmPlot"),"Confirm")
+                    ),
+             column(6,
+                    tmap::tmapOutput(ns("mapPlot")))
+                    #leaflet::leafletOutput(ns("mapPlot")))
+             )
+    
  
   )
 }
@@ -19,6 +31,24 @@ mod_ChinaGeo_ui <- function(id){
 #' @noRd 
 mod_ChinaGeo_server <- function(input, output, session){
   ns <- session$ns
+  #browser()
+  observeEvent(input$confirmPlot, {
+    
+    shp_data = sf::st_read("data/gadm36_CHN_shp/gadm36_CHN_2.shp")
+    p_guizhou = shp_data[shp_data$NAME_1 %in% c('Guizhou'),]
+    p_guizhou$NAME_2 = p_guizhou$NAME_2 %>% as.character()
+    output$mapPlot = tmap::renderTmap({
+      tmap::tm_shape(p_guizhou) +
+        tmap::tm_polygons("NAME_2", title = "City") + 
+        tmap::tm_text("NL_NAME_2",size= 1) + 
+        tmap::tm_layout(legend.outside = T, legend.outside.position = "right", 
+        )
+    })
+    
+    
+    #browser()
+    
+  })
  
 }
     
