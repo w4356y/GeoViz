@@ -21,9 +21,9 @@ You can install the released version of GeoViz from
 [CRAN](https://CRAN.R-project.org) with:
 
 ``` r
-#install.packages("GeoViz")
+# to be deployed
 ```
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+To be developed
