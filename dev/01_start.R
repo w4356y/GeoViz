@@ -16,7 +16,7 @@
 golem::fill_desc(
   pkg_name = "GeoViz", # The Name of the package containing the App 
   pkg_title = "Spatial Data Visualization", # The Title of the package containing the App 
-  pkg_description = "For easily visalize spatial data.", # The Description of the package containing the App 
+  pkg_description = "For easily visualize spatial data.", # The Description of the package containing the App 
   author_first_name = "Wei", # Your First Name
   author_last_name = "Jiang", # Your Last Name
   author_email = "w4356y@163.com", # Your Email
