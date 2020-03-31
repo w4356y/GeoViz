@@ -8,10 +8,9 @@ app_ui <- function(request) {
   tagList(
     # Leave this function for adding external resources
     golem_add_external_resources(),
-    
     # List the first level UI elements here 
     shinydashboardPlus::dashboardPagePlus(
-      title = "China Map - Hello",
+      title = "PROMiDAT - discoveR",
       skin = 'purple',
       #sidebar_background = 'grey',
       header = mod_header_ui("header_ui_1"),
@@ -21,21 +20,17 @@ app_ui <- function(request) {
         #useShinyjs(),
         #title = "TEST",
         tags$head(
-          tags$link(rel = "stylesheet", type = "text/css", href = "inst/app/www/custom.css"),
-          tags$link(rel = "shiny::icon", type = "image", href = paste0(
-            "http://www.promidat.org/theme/image.php/", 
-            "formal_white/theme/1438713216/favicon")),
-          useShinyjs(),
-          tags$script(src = "myscript.js")
+          tags$link(rel = "stylesheet", type = "text/css", href = "custom.css"),
+          shinyjs::useShinyjs(),
+          tags$script(src = "script.js")
         ),
-          
         shinydashboard::tabItems(
           shinydashboard::tabItem(
             tabName = "dashboard",
-            actionButton("test","Test")
+            mod_dashboard_ui("dashboard_ui_1")
           ),
           shinydashboard::tabItem(
-            tabName = "China Map",
+            tabName = "China_Map",
             mod_ChinaGeo_ui("ChinaGeo_ui_1")
           )
         )

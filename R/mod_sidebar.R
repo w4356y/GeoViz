@@ -22,7 +22,7 @@ mod_sidebar_ui <- function(id){
       ),
       shinydashboard::menuItem(
         "BioMeta", 
-        tabName = "BioMeta", 
+        tabName = "China_Map", 
         icon = icon("moon")
       )
       ),
