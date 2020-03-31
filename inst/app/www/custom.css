@@ -1,0 +1,11 @@
+.header-title {
+  position: absolute;
+  margin-top: 7px;
+  font-size: 24px;
+  color: #CBB051;
+    left: 45%;
+}
+
+.menuicon {
+  width: 20px;
+}

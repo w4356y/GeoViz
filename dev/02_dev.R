@@ -20,8 +20,8 @@ usethis::use_package( "tmap" )
 ## Add modules ----
 ## Create a module infrastructure in R/
 golem::add_module( name = "ChinaGeo" ) # Name of the module
-#golem::add_module( name = "name_of_module2" ) # Name of the module
-
+golem::add_module( name = "header" ) # Name of the module
+golem::add_module( name = "sidebar" ) # Name of the module
 ## Add helper functions ----
 ## Creates ftc_* and utils_*
 golem::add_fct( "helpers" ) 
