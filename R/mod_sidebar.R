@@ -10,7 +10,7 @@
 mod_sidebar_ui <- function(id){
   ns <- NS(id)
   shinydashboard::dashboardSidebar(
-    disable = FALSE, 
+    #disable = TRUE, 
     collapsed = FALSE,
     shinydashboard::sidebarMenu(
       id = 'tabs', 
