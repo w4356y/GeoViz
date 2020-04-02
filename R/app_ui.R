@@ -20,7 +20,7 @@ app_ui <- function(request) {
         #useShinyjs(),
         #title = "TEST",
         tags$head(
-          tags$link(rel = "stylesheet", type = "text/css", href = "custom.css"),
+          #tags$link(rel = "stylesheet", type = "text/css", href = "custom.css"),
           shinyjs::useShinyjs(),
           tags$script(src = "script.js")
         ),

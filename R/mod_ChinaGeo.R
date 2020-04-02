@@ -42,6 +42,7 @@ mod_ChinaGeo_server <- function(input, output, session){
         tmap::tm_polygons("NAME_2", title = "City") + 
         tmap::tm_text("NL_NAME_2",size= 1) + 
         tmap::tm_layout(legend.outside = T, legend.outside.position = "right", 
+                        legend.show = FALSE
         )
     })
     
