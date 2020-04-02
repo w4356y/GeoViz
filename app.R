@@ -3,7 +3,8 @@
 # Or use the blue button on top of this file
 pkgload::load_all()
 options( "golem.app.prod" = TRUE)
-GeoViz::run_app()
+#source('R/run_app.R')
+run_app()
 
 
 

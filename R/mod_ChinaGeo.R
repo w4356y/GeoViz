@@ -37,13 +37,14 @@ mod_ChinaGeo_server <- function(input, output, session){
     shp_data = sf::st_read("data/gadm36_CHN_shp/gadm36_CHN_2.shp")
     p_guizhou = shp_data[shp_data$NAME_1 %in% c('Guizhou'),]
     p_guizhou$NAME_2 = p_guizhou$NAME_2 %>% as.character()
+    
+    #browser()
     output$mapPlot = tmap::renderTmap({
+      tmap::tmap_mode("plot")
       tmap::tm_shape(p_guizhou) +
-        tmap::tm_polygons("NAME_2", title = "City") + 
+        tmap::tm_polygons("NAME_2", title = "City", legend.show = FALSE) + 
         tmap::tm_text("NL_NAME_2",size= 1) + 
-        tmap::tm_layout(legend.outside = T, legend.outside.position = "right", 
-                        legend.show = FALSE
-        )
+        tmap::tm_layout(legend.show = FALSE)
     })
     
     

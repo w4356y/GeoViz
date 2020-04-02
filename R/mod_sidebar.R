@@ -21,8 +21,13 @@ mod_sidebar_ui <- function(id){
         icon = icon("home")
       ),
       shinydashboard::menuItem(
-        "BioMeta", 
+        "China Map", 
         tabName = "China_Map", 
+        icon = icon("moon")
+      ),
+      shinydashboard::menuItem(
+        "World Map", 
+        tabName = "World_Map", 
         icon = icon("moon")
       )
       ),

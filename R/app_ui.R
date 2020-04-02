@@ -32,6 +32,11 @@ app_ui <- function(request) {
           shinydashboard::tabItem(
             tabName = "China_Map",
             mod_ChinaGeo_ui("ChinaGeo_ui_1")
+          ),
+          shinydashboard::tabItem(
+            tabName = "World_Map",
+            actionButton("test1","test1")
+            #mod_ChinaGeo_ui("ChinaGeo_ui_1")
           )
         )
       )
