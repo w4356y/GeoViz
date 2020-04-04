@@ -22,9 +22,9 @@ mod_WorldGeo_ui <- function(id){
 mod_WorldGeo_server <- function(input, output, session){
   ns <- session$ns
   observeEvent(input$confirmPlot, {
-    data("World")
-    tm = tm_shape(World) +
-          tm_polygons("HPI")
+    #data("World")
+    tm = tmap::tm_shape(World) +
+          tmap::tm_polygons("HPI")
     output$mapPlot_Static = renderPlot({
       tm 
     })
