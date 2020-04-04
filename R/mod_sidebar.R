@@ -30,22 +30,22 @@ mod_sidebar_ui <- function(id){
         tabName = "World_Map", 
         icon = icon("moon")
       )
-      ),
-    tags$div(
-      "Some text followed by a break", 
-      tags$br(),
-      "Some text following a break"
-    ),
-    tags$em("This text is emphasized."),
-    tags$ol(
-      tags$li("First list item"), 
-      tags$li("Second list item"), 
-      tags$li("Third list item")
-    ),
-    tags$pre("This text is preformatted."),
-    tags$div(
-      HTML(paste("This text is ", tags$span(style="color:red", "red"), sep = ""))
-    )
+      )
+    # tags$div(
+    #   "Some text followed by a break", 
+    #   tags$br(),
+    #   "Some text following a break"
+    # ),
+    # tags$em("This text is emphasized."),
+    # tags$ol(
+    #   tags$li("First list item"), 
+    #   tags$li("Second list item"), 
+    #   tags$li("Third list item")
+    # ),
+    # tags$pre("This text is preformatted."),
+    # tags$div(
+    #   HTML(paste("This text is ", tags$span(style="color:red", "red"), sep = ""))
+    # )
     )
   
  

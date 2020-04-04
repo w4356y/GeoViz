@@ -11,7 +11,7 @@ mod_header_ui <- function(id){
   ns <- NS(id)
   shinydashboardPlus::dashboardHeaderPlus(title = tags$a(href="http://metanotitia.com/", 
                                                            target = "_blank",
-                                                           shiny::img(src = "logo2.jpg", 
+                                                           shiny::img(src = "www/logo2.jpg", 
                                                                       height = 55, width = "100%",
                                                                       style="padding-top:2px; padding-bottom:6px;")
     ) 

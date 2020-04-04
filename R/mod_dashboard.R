@@ -11,7 +11,8 @@ mod_dashboard_ui <- function(id){
   ns <- NS(id)
   tagList(
     shinydashboard::box(title = "test",
-                        selectInput("1","1",choices = c(1,2,3)))
+                        selectInput("1","1",choices = c(1,2,3))),
+    tags$img(src="www/under_construction.png", style = 'width: 100%;')
  
   )
 }

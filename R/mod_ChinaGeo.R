@@ -11,14 +11,18 @@ mod_ChinaGeo_ui <- function(id){
   ns <- NS(id)
   tagList(
     fluidRow(column(6,
-                    selectInput("AreaType",
-                                "Please select an level.",
-                                choices = c("Country","Province","City","District")
-                                ),
-                    actionButton(ns("confirmPlot"),"Confirm")
+                    shinydashboard::box(title = "Specification",
+                      selectInput(ns("AreaType"),
+                                  "Please select an level.",
+                                  choices = c("国家","省","市","区/县")
+                                  ),
+                      selectInput(ns("Province"),"Please select a Province", choices = NA),
+                      actionButton(ns("confirmPlot"),"Confirm")
+                    )
                     ),
              column(6,
-                    tmap::tmapOutput(ns("mapPlot")))
+                    tmap::tmapOutput(ns("mapPlot")),
+                    plotOutput(ns("mapPlot_Static")))
                     #leaflet::leafletOutput(ns("mapPlot")))
              )
     
@@ -29,27 +33,59 @@ mod_ChinaGeo_ui <- function(id){
 #' ChinaGeo Server Function
 #'
 #' @noRd 
-mod_ChinaGeo_server <- function(input, output, session){
+mod_ChinaGeo_server <- function(input, output, session, rv = rv){
   ns <- session$ns
   #browser()
+  df =  readxl::read_xlsx("data//Province Name.xlsx")
+  rv$df = df
+  #browser()
+  updateSelectInput(session, "Province", choices = df$Chi_Name)
   observeEvent(input$confirmPlot, {
     
     shp_data = sf::st_read("data/gadm36_CHN_shp/gadm36_CHN_2.shp")
-    p_guizhou = shp_data[shp_data$NAME_1 %in% c('Guizhou'),]
-    p_guizhou$NAME_2 = p_guizhou$NAME_2 %>% as.character()
-    
-    #browser()
-    output$mapPlot = tmap::renderTmap({
+    if(input$AreaType  == "国家"){
+      tmap_options(max.categories = 31)
+      tm = tmap::tm_shape(x) + 
+        tmap::tm_polygons("NAME_1") + 
+        #tmap::tm_text("NL_NAME_1",size= 1) + 
+        tmap::tm_layout(legend.show = FALSE)
+    }else if(input$AreaType == "省"){
+      req(input$Province)
+      library(dplyr)
+      provinceID = dplyr::filter(rv$df, Chi_Name == input$Province) %>% pull(Eng_Name)
+      #browser()
+      p_guizhou = shp_data[shp_data$NAME_1 %in% c(provinceID),]
+      
+      p_guizhou$NAME_2 = p_guizhou$NAME_2 %>% as.character()
       tmap::tmap_mode("plot")
-      tmap::tm_shape(p_guizhou) +
+      tm = tmap::tm_shape(p_guizhou) +
         tmap::tm_polygons("NAME_2", title = "City", legend.show = FALSE) + 
         tmap::tm_text("NL_NAME_2",size= 1) + 
         tmap::tm_layout(legend.show = FALSE)
+    }else{
+      
+    }
+    
+    #browser()
+    output$mapPlot = tmap::renderTmap({
+      tm
+    })
+    output$mapPlot_Static = renderPlot({
+      tm 
     })
     
     
     #browser()
     
+  })
+  
+  
+  observe({
+    if(input$AreaType == "国家"){
+      shinyjs::hide("Province")
+    }else if(input$AreaType == "省"){
+      shinyjs::show("Province")
+    }
   })
  
 }
