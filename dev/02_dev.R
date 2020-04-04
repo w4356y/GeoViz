@@ -20,6 +20,7 @@ usethis::use_package( "tmap" )
 ## Add modules ----
 ## Create a module infrastructure in R/
 golem::add_module( name = "ChinaGeo" ) # Name of the module
+golem::add_module( name = "WorldGeo" )
 golem::add_module( name = "header" ) # Name of the module
 golem::add_module( name = "sidebar" ) # Name of the module
 golem::add_module( name = "dashboard" ) # Name of the module
