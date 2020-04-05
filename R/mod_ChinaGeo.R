@@ -36,20 +36,21 @@ mod_ChinaGeo_ui <- function(id){
 mod_ChinaGeo_server <- function(input, output, session, rv = rv){
   ns <- session$ns
   #browser()
-  df =  readxl::read_xlsx("data//Province Name.xlsx")
+  df =  readxl::read_xlsx("data/Province Name.xlsx")
   rv$df = df
   #browser()
   updateSelectInput(session, "Province", choices = df$Chi_Name)
   observeEvent(input$confirmPlot, {
-    
-    shp_data = sf::st_read("data/gadm36_CHN_shp/gadm36_CHN_2.shp")
+    #shp_data = sf::st_read("data/gadm36_CHN_shp/gadm36_CHN_2.shp")
     if(input$AreaType  == "国家"){
+      shp_data = China_Country
       tmap_options(max.categories = 31)
-      tm = tmap::tm_shape(x) + 
+      tm = tmap::tm_shape(shp_data) + 
         tmap::tm_polygons("NAME_1") + 
         #tmap::tm_text("NL_NAME_1",size= 1) + 
         tmap::tm_layout(legend.show = FALSE)
     }else if(input$AreaType == "省"){
+      shp_data = China_Province
       req(input$Province)
       library(dplyr)
       provinceID = dplyr::filter(rv$df, Chi_Name == input$Province) %>% pull(Eng_Name)
