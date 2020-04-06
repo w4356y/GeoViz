@@ -13,6 +13,8 @@ status](https://travis-ci.org/w4356y/GeoViz.svg?branch=master)](https://travis-c
 status](https://ci.appveyor.com/api/projects/status/github/w4356y/GeoViz?branch=master&svg=true)](https://ci.appveyor.com/project/w4356y/GeoViz)
 <!-- badges: end -->
 
+![Alt text](inst/app/www/Wei2Go_logo.png?raw=true "Title")
+
 The goal of GeoViz is to visualize China map and world map in a
 customized way.
 
