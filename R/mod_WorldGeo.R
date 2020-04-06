@@ -20,29 +20,41 @@ mod_WorldGeo_ui <- function(id){
                                         column(4,
                                                actionButton(ns("confirmPlot"),"Confirm")
                                         )),
-                                        radioButtons(ns("HighlightContinent"),"Select a continent",
-                                                     choices = c("Asia",
-                                                                 "Europe",
-                                                                 "North America",
-                                                                 "Africa",
-                                                                 "South America"
-                                                     ),
-                                                     inline = TRUE),
-                                        actionButton(ns("confirmHighlight"),"Zoom IN")
+                                        fluidRow(column(8,
+                                                        radioButtons(ns("HighlightContinent"),"Select a continent",
+                                                                     choices = c("Asia",
+                                                                                 "Europe",
+                                                                                 "North America",
+                                                                                 "Africa",
+                                                                                 "South America"
+                                                                     ),
+                                                                     inline = TRUE)
+                                                        ),
+                                                 column(4,
+                                                        actionButton(ns("confirmHighlight"),"Zoom IN")
+                                                        ))
+                                        
+                                        
                                         )
                     ),
              column(6,
                     shinydashboard::box(title = "Filter", status = "primary", width = NULL,
-                                        checkboxGroupInput(ns("Continent"),"Select a continent",
-                                                     choices = c("Asia",
-                                                                 "Europe",
-                                                                 "North America",
-                                                                 "Africa",
-                                                                 "South America"
-                                                     ),
-                                                     inline = TRUE),
-                                        actionButton(ns("confirmPlotAfterFilter"),"Confirm"))
+                                        fluidRow(column(8,
+                                                        checkboxGroupInput(ns("Continent"),"Select a continent",
+                                                                           choices = c("Asia",
+                                                                                       "Europe",
+                                                                                       "North America",
+                                                                                       "Africa",
+                                                                                       "South America"
+                                                                           ),
+                                                                           inline = TRUE)
+                                                        ),
+                                                 column(4,
+                                                        actionButton(ns("confirmPlotAfterFilter"),"Highlight"))
+                                                        )
+                                        
                     )
+             )
              ),
     DT::dataTableOutput(ns("map_table")),
     plotOutput(ns("mapPlot_Static"))
