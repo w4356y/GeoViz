@@ -11,25 +11,25 @@ mod_WorldGeo_ui <- function(id){
   ns <- NS(id)
   tagList(
     fluidRow(column(6,
-                    fluidRow(column(8, 
-                                    selectInput(ns("polygonParameter"),
-                                                "Select a variable.", 
-                                                choices = setdiff(colnames(World),c("iso_a3","geometry"))),
-                                    ),
-                             column(4,
-                                    actionButton(ns("confirmPlot"),"Confirm")
-                                    )),
-                    hr(),
-                    br(),
-                    radioButtons(ns("HighlightContinent"),"Select a continent",
-                                      choices = c("Asia",
-                                                   "Europe",
-                                                   "North America",
-                                                   "Africa",
-                                                   "South America"
-                                                   ),
-                                      inline = TRUE),
-                    actionButton(ns("confirmHighlight"),"Zoom IN")
+                    shinydashboard::box(title = "Configuration", status = "primary", width = NULL,
+                                        fluidRow(column(8, 
+                                                        selectInput(ns("polygonParameter"),
+                                                                    "Select a variable.", 
+                                                                    choices = setdiff(colnames(World),c("iso_a3","geometry"))),
+                                        ),
+                                        column(4,
+                                               actionButton(ns("confirmPlot"),"Confirm")
+                                        )),
+                                        radioButtons(ns("HighlightContinent"),"Select a continent",
+                                                     choices = c("Asia",
+                                                                 "Europe",
+                                                                 "North America",
+                                                                 "Africa",
+                                                                 "South America"
+                                                     ),
+                                                     inline = TRUE),
+                                        actionButton(ns("confirmHighlight"),"Zoom IN")
+                                        )
                     ),
              column(6,
                     shinydashboard::box(title = "Filter", status = "primary", width = NULL,

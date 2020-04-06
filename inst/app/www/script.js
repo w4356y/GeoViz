@@ -2,6 +2,26 @@ $( document ).ready(function() {
   $("header").find("nav").append('<span class="header-title"> <i>GeoViz</i> </span>');
 });
 
+
+
+$(function() {
+  
+  $(document).on({
+    'shiny:inputchanged': function(event) {
+      switch (event.name) {
+        case 'dashboard_ui_1-test':
+          alert('Sorry, the current process has been prevented.');
+          event.preventDefault();
+          
+        default:
+      }
+    }
+  })
+
+  
+})
+  
+  
 /*
 shinyjs.init = function() {
   $(".sidebar").on("click", ".disabled", function (e) {

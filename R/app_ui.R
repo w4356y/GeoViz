@@ -22,7 +22,7 @@ app_ui <- function(request) {
         tags$head(
           tags$link(rel = "stylesheet", type = "text/css", href = "www/custom.css"),
           shinyjs::useShinyjs(),
-          tags$script(src = "script.js")
+          tags$script(src = "www/script.js")
         ),
         shinydashboard::tabItems(
           shinydashboard::tabItem(
