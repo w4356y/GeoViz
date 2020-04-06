@@ -11,9 +11,25 @@ mod_WorldGeo_ui <- function(id){
   ns <- NS(id)
   tagList(
     fluidRow(column(6,
-                    actionButton(ns("confirmPlot"),"Confirm"),
+                    fluidRow(column(8, 
+                                    selectInput(ns("polygonParameter"),
+                                                "Select a variable.", 
+                                                choices = setdiff(colnames(World),c("iso_a3","geometry"))),
+                                    ),
+                             column(4,
+                                    actionButton(ns("confirmPlot"),"Confirm")
+                                    )),
                     hr(),
                     br(),
+                    radioButtons(ns("HighlightContinent"),"Select a continent",
+                                      choices = c("Asia",
+                                                   "Europe",
+                                                   "North America",
+                                                   "Africa",
+                                                   "South America"
+                                                   ),
+                                      inline = TRUE),
+                    actionButton(ns("confirmHighlight"),"Zoom IN")
                     ),
              column(6,
                     shinydashboard::box(title = "Filter", status = "primary", width = NULL,
@@ -25,17 +41,6 @@ mod_WorldGeo_ui <- function(id){
                                                                  "South America"
                                                      ),
                                                      inline = TRUE),
-                                        selectInput(ns("polygonParameter"),
-                                                    "Select a variable.", 
-                                                    choices = setdiff(colnames(World),c("iso_a3","geometry"))),
-                                        # radioButtons(ns("Continent"),"Select a continent",
-                                        #                   choices = c("Asia",
-                                        #                                "Europe",
-                                        #                                "North America",
-                                        #                                "Africa",
-                                        #                                "South America"
-                                        #                                ),
-                                        #                   inline = TRUE),
                                         actionButton(ns("confirmPlotAfterFilter"),"Confirm"))
                     )
              ),
@@ -77,6 +82,21 @@ mod_WorldGeo_server <- function(input, output, session){
       tmap::tm_polygons(input$polygonParameter)
     output$map_table = DT::renderDataTable({
       DT::datatable(World[World$continent == input$Continent,], extensions = 'Responsive',
+                    options = list(pageLength = 8, autoWidth = TRUE),
+                    rownames= FALSE)
+    })
+    output$mapPlot_Static = renderPlot({
+      tm 
+    })
+  })
+  
+  observeEvent(input$confirmHighlight, {
+    #data("World")
+    #browser()
+    tm = tmap::tm_shape(World[World$continent == input$HighlightContinent,]) +
+      tmap::tm_polygons(input$polygonParameter)
+    output$map_table = DT::renderDataTable({
+      DT::datatable(World[World$continent == input$HighlightContinent,], extensions = 'Responsive',
                     options = list(pageLength = 8, autoWidth = TRUE),
                     rownames= FALSE)
     })
