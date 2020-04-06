@@ -12,6 +12,7 @@ app_ui <- function(request) {
     shinydashboardPlus::dashboardPagePlus(
       title = "PROMiDAT - discoveR",
       skin = 'purple',
+      #tags$head(tags$script(src = "www/script.js")),
       #sidebar_background = 'grey',
       header = mod_header_ui("header_ui_1"),
       sidebar = mod_sidebar_ui("sidebar_ui_1"),

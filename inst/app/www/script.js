@@ -12,7 +12,9 @@ $(function() {
         case 'dashboard_ui_1-test':
           alert('Sorry, the current process has been prevented.');
           event.preventDefault();
-          
+        case 'sidebar-toggle':
+          alert('Sorry, siderbarCollapsed has been prevented.');
+          event.preventDefault();
         default:
       }
     }
@@ -22,12 +24,19 @@ $(function() {
 })
   
   
-/*
+
 shinyjs.init = function() {
-  $(".sidebar").on("click", ".disabled", function (e) {
+  $("#sidebar-toggle").on("click", ".disabled", ".collapsed", function (e) {
     e.preventDefault();
     return false;
   });
+  
+   $("[data-toggle='offcanvas']").click(function() {
+    var a = $(this).parents(".tab-content").first();
+    a.removeClass("sidebar-collapse");
+  })
+  
+  
   $("[data-widget='left']").click(function() {
     var a = $(this).parents(".tab-content").first();
     a.removeClass("box-option-open-centerleft");
@@ -77,4 +86,4 @@ shinyjs.init = function() {
   $("ul#tabjerar li")[8].remove();
   $("ul#tabkmedias li")[8].remove();
 };
-*/
+
