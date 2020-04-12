@@ -10,6 +10,7 @@ app_ui <- function(request) {
     golem_add_external_resources(),
     # List the first level UI elements here 
     shinydashboardPlus::dashboardPagePlus(
+    #argonDash::argonDashPage(
       title = "PROMiDAT - discoveR",
       skin = 'purple',
       #tags$head(tags$script(src = "www/script.js")),
