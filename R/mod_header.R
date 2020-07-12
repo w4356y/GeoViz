@@ -9,10 +9,10 @@
 #' @importFrom shiny NS tagList 
 mod_header_ui <- function(id){
   ns <- NS(id)
-  shinydashboardPlus::dashboardHeaderPlus(title = tags$a(href="http://metanotitia.com/",
+  shinydashboardPlus::dashboardHeaderPlus(title = tags$a(href="https://w4356y.wixsite.com/home",
                                                            target = "_blank",
                                                          shinyjs::useShinyjs(),
-                                                           shiny::img(src = "www/logo2.jpg",
+                                                           shiny::img(src = "www/logo3.png",
                                                                       height = 55, width = "100%",
                                                                       style="padding-top:2px; padding-bottom:6px;")
     ) 
