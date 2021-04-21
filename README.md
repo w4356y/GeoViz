@@ -17,6 +17,7 @@ status](https://ci.appveyor.com/api/projects/status/github/w4356y/GeoViz?branch=
 
 The goal of GeoViz is to visualize China map and world map in a
 customized way.
+The development is guided by [golem framework](https://engineering-shiny.org/)
 
 ## Installation
 
